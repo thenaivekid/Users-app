@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="view-port" content="width=device-width, initial-scale=1">
+        <title>Users</title>
+        <script>
+            function showdiv(div){
+                document.querySelector(`#${div}`).style.display = 'block';
+            }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('button').forEach(button => {
+                    button.onclick = function(button){
+                        showdiv(this.dataset.div)
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        {% block body %} 
+        {% endblock %}
+    </body>
+</html>

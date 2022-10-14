@@ -1,0 +1,33 @@
+{% extends "users/layout.html" %} 
+
+{% block body %} 
+
+<h1>Welcome, {{ request.user.first_name }}</h1>
+
+<ul>
+    <li> First Name: {{ request.user.first_name  }}</li>
+    <li> Last Name: {{ request.user.last_name  }}</li>
+    <li>Userame: {{ request.user.username  }}</li>
+    <li>Email: {{request.user.email}} </li>
+</ul>
+<h3>{{message}}</h3>
+<br>
+<a href="{% url 'users:login' %}">Log in</a><br><br>
+<a href="{% url 'users:logout' %}">Log out</a><br><br>
+<a href="{% url 'users:signup' %}">Sign up</a><br><br>
+<button data-div="change_password">Change Password</button>
+<br>
+<div id="change_password" style="display: none;">
+    <form action="{% url 'users:change_password' %}" method="POST">
+        {% csrf_token %} 
+        <input type="text" name="username" placeholder="User name"><br>
+        <input type="password" name="password0" placeholder="Current Password"><br>
+        <input type="password" name="password1" placeholder="New Password"><br>
+        <input type="password" name="password2" placeholder="New Password Again"><br>
+        <input type="submit" value="Save Changes"><br>
+    </form>
+
+    {{help_texts}}
+</div>
+{% endblock %} 
+
